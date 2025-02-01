@@ -1,0 +1,30 @@
+/* filepath: /Users/madhusudanavenganapally/AngularWorkspace/manage-tax-cal/src/app/tax-visualization/tax-visualization.component.scss */
+.tax-visualization-container {
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .tax-slabs {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .tax-slab {
+    width: 80%;
+    padding: 10px;
+    margin: 5px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .tax-range {
+    font-weight: bold;
+  }
+  
+  .tax-label {
+    font-size: 1.2em;
+  }

@@ -1,0 +1,9 @@
+<div class="tax-visualization-container">
+    <h2>Tax Slabs</h2>
+    <div class="tax-slabs">
+      <div *ngFor="let bracket of taxBrackets; let i = index" class="tax-slab" [style.background-color]="bracket.color" [style.color]="bracket.textColor">
+        <span class="tax-range">{{ bracket.range }}</span>
+        <span class="tax-label">{{ taxLabels[i] }}</span>
+      </div>
+    </div>
+  </div>

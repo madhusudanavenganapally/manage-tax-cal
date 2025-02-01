@@ -1,0 +1,85 @@
+<div class="tax-calculator-container">
+
+  <h2 class="h2color">India Income Tax Calculator</h2>
+  <h3>New Tax Regime AY 2026-2027</h3>
+
+  <form [formGroup]="taxForm" (ngSubmit)="calculateTax()" novalidate>
+    <!-- Annual Income Input -->
+    <div class="form-group">
+      <label for="annualIncome">Annual Income:</label>
+      <input 
+        type="number" 
+        id="annualIncome" 
+        formControlName="annualIncome" 
+        aria-describedby="annualIncomeHelp" 
+        placeholder="Enter your annual income"
+        required
+        maxlength="10"
+        appRestrictDecimals
+      />
+
+      
+      <!-- Error Message for Invalid Input -->
+      <div 
+        *ngIf="annualIncomeControl?.invalid && (annualIncomeControl?.dirty || annualIncomeControl?.touched)"
+        class="error-message"
+        role="alert"
+        aria-live="assertive"
+      >
+        <div *ngIf="annualIncomeControl?.errors?.['required']">
+          <p>Annual Income is required.</p>
+        </div>
+        <div *ngIf="annualIncomeControl?.errors?.['min']">
+          <p>Annual Income must be greater than or equal to 0.</p>
+        </div>
+        <div *ngIf="annualIncomeControl?.errors?.['maxDigits']">
+          <p>Annual Income must be less than or equal to 10 digits.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Submit Button -->
+    <button type="submit" [disabled]="taxForm.invalid">Calculate</button>
+  </form>
+  <!-- Error Message for Invalid Form Submission -->
+  <div *ngIf="taxForm.invalid && (taxForm.dirty || taxForm.touched)" class="error-message">
+    <p>Please fix the errors before submitting.</p>
+  </div>
+  <!-- Display Results -->
+  <div *ngIf="calculatedTax !== null" class="results" aria-live="polite">
+    <h3>Tax Calculation:</h3>
+    <table class="results-table">
+      <tr>
+        <th>Detail</th>
+        <th>Amount</th>
+      </tr>
+      <tr>
+        <td>Annual Income</td>
+        <td>{{ formattedAnnualIncome }}</td>
+      </tr>
+      <tr>
+        <td>Standard Deduction</td>
+        <td>{{ formattedStandardDeduction }}</td>
+      </tr>
+      <tr>
+        <td>Taxable Income</td>
+        <td>{{ formattedTaxableIncome }}</td>
+      </tr>
+      <tr>
+        <td>Total Tax</td>
+        <td>{{ formattedCalculatedTax }}</td>
+      </tr>
+      <tr>
+        <td>Take Home Pay</td>
+        <td>{{ formattedTakeHomeAmount }}</td>
+      </tr>
+    </table>
+  </div>
+
+
+
+</div>
+
+<div class="tax-calculator-container">
+  <app-tax-visualization></app-tax-visualization>
+</div>
